@@ -9,7 +9,7 @@ body {
     width: 100%;
     height: 100%;
     list-style: none;
-    background-color: rgb(116, 116, 116);
+    background-color: #3d2657;
     font-family: 'Gabarito', sans-serif;
 }
 
@@ -30,11 +30,12 @@ input{
 .topo {
     display: flex;
     justify-content: center;
+    padding-bottom: 15px;
 }
 
 ul li a {
     text-decoration: none;
-    color: black;
+    color: #ff7a00;
     font-family: 'Gabarito', sans-serif;
     font-size: 20px;
     
@@ -48,7 +49,14 @@ a:hover {
     color: rgb(2, 4, 36);
 }
 
+h3,h1, label {
+    color: #ff7a00 ;
+}
 
+.imagem {
+    text-align: center;
+    padding-top: 20px;
+}
 
 #app {
     max-width: 600px;
@@ -96,7 +104,7 @@ textarea {
 
 button {
     padding: 10px;
-    background-color: #4caf50;
+    background-color: #ff7a00;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -105,7 +113,6 @@ button {
 button:hover {
     background-color: #45a049;
 }
-    
 
 
 
