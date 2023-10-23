@@ -15,7 +15,7 @@ function addProduct() {
 
         // Adicionar o produto à lista
         addProductToList(product);
-
+        addLocalStorage(product);
         // Limpar os campos do formulário
         clearForm();
     } else {
@@ -44,9 +44,23 @@ function addProductToList(product) {
 function removeProduct(button) {
     const productElement = button.parentNode;
     const productList = document.getElementById('product-list');
+    const productName = productElement.querySelector('strong').textContent;
 
     // Remover o elemento da lista
     productList.removeChild(productElement);
+
+    // Obter a lista de produtos do Local Storage
+    const productListInStorage = JSON.parse(localStorage.getItem('products')) || [];
+
+    // Encontrar o índice do produto a ser removido na lista do Local Storage
+    const index = productListInStorage.findIndex(product => product.name === productName);
+
+    if (index !== -1) {
+        // Remover o produto da lista do Local Storage
+        productListInStorage.splice(index, 1);
+        // Atualizar o Local Storage com a lista modificada
+        localStorage.setItem('products', JSON.stringify(productListInStorage));
+    }
 }
 
 function clearForm() {
@@ -54,3 +68,30 @@ function clearForm() {
     document.getElementById('product-price').value = '';
     document.getElementById('product-description').value = '';
 }
+
+function addLocalStorage(product) {
+    let productList = JSON.parse(localStorage.getItem('products')) || [];
+    productList.push(product);
+    localStorage.setItem('products', JSON.stringify(productList));
+}
+
+function getLocalStorage() {
+    const productList = document.querySelector("#product-list");
+    const productListInStorage = JSON.parse(localStorage.getItem('products')) || [];
+
+    productListInStorage.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        productElement.innerHTML = `
+            <strong>${product.name}</strong> - R$${product.price.toFixed(2)}<br>
+            ${product.description}
+            <button onclick="removeProduct(this)">Remover</button>
+        `;
+        productList.appendChild(productElement);
+    });
+}
+
+window.addEventListener('load', () => {
+    getLocalStorage();
+});
