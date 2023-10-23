@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@500;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: none;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    background-color: rgb(116, 116, 116);
+    font-family: 'Gabarito', sans-serif;
+}
+
+form{
+    width: 300px;
+    margin: 200px auto;
+    text-align: center;
+}
+
+input{
+    display: block;
+    margin: 10px auto;
+    width: 250;
+    height: 30px;
+    font-family: 'Gabarito', sans-serif;
+}
+
+.topo {
+    display: flex;
+    justify-content: center;
+}
+
+ul li a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Gabarito', sans-serif;
+    font-size: 20px;
+    
+}
+
+li {
+    list-style: none;
+}
+
+a:hover {
+    color: rgb(2, 4, 36);
+}
+
+
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    
+   
+
+}
+
+#inventory {
+    margin-top: 20px;
+    
+}
+
+#inventory div {
+    margin-bottom: 10px;
+}
+
+#product-list {
+    margin-top: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.product button {
+    margin-left: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+    
+
+
+
+
+
+
+
+
+
