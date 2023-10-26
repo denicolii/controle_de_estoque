@@ -3,6 +3,9 @@ function addProduct() {
     const productName = document.getElementById('product-name').value;
     const productPrice = document.getElementById('product-price').value;
     const productDescription = document.getElementById('product-description').value;
+    const productIMG = document.createElement('img');
+
+    const inputIMG = document.querySelector('#inputImagem');
 
     // Verificar se todos os campos estão preenchidos
     if (productName && productPrice && productDescription) {
@@ -95,3 +98,24 @@ function getLocalStorage() {
 window.addEventListener('load', () => {
     getLocalStorage();
 });
+
+
+
+/*
+ inputImagem.addEventListener('change', function() {
+            const file = inputImagem.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagemSelecionada.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imagemSelecionada.src = ''; // Limpar a imagem se nenhum arquivo for selecionado
+            }
+        });
+
+* */

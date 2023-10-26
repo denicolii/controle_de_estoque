@@ -13,20 +13,16 @@ form.addEventListener('submit', event => {
 
         document.querySelector('h2').textContent = "Cadastro feito com sucesso"
         document.querySelector('h2').style.color = 'green';
-        let count = 1;
-
-        setTimeout(() => {
-            document.querySelector('.count').textContent = "0" + count;
-        }, 500)
+        let count = 5;
 
         setInterval(() => {
             document.querySelector('.count').textContent = "0" + count;
-            count++;
+            count--;
         }, 1000)
 
         setTimeout(() => {
             location.href = 'index.html'
-        }, 5800)
+        }, 5000)
 
     }else 
     {
