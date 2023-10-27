@@ -1,25 +1,95 @@
-const dummyTransactions = [
-    { id: 1, name: 'Bolo de brigadeiro', amount: -20},
-    { id: 2, name: 'Salário', amount: 300},
-    { id: 3, name: 'Torta de frango', amount: -210},
-    { id: 4, name: 'Violão', amount: 150}
+const tbody = document.querySelector("tbody");
+const descItem = document.querySelector("#desc");
+const amount = document.querySelector("#amount");
+const type = document.querySelector("#type");
+const btnNew = document.querySelector("#btnNew");
 
-]
+const incomes = document.querySelector(".incomes");
+const expenses = document.querySelector(".expenses");
+const total = document.querySelector(".total");
 
-const addTransactionIntoDOM = transaction => {
-    const operator = transaction.amount < 0 ? '-' : '+'
-    const CSSClass = transaction.amount < 0 ? 'minus' : 'plus'
-    const amountWithoutOperator = Math.abs(transaction.amount)
-    const li = document.createElement('li')
+let items;
 
-    li.classList.add(CSSClass)
-    li.innerHTML = `
-    ${transaction.name} <span>${operator} $ ${amountWithoutOperator}}</span><button class="delete-btn">x</button>
+btnNew.onclick = () => {
+  if (descItem.value === "" || amount.value === "" || type.value === "") {
+    return alert("Preencha todos os campos!");
+  }
 
-    `
-    console.log(li)
+  items.push({
+    desc: descItem.value,
+    amount: Math.abs(amount.value).toFixed(2),
+    type: type.value,
+  });
 
-    
+  setItemsBD();
+
+  loadItems();
+
+  descItem.value = "";
+  amount.value = "";
+};
+
+function deleteItem(index) {
+  items.splice(index, 1);
+  setItemsBD();
+  loadItems();
 }
 
-addTransactionIntoDOM(dummyTransactions[0])
+function insertItem(item, index) {
+  let tr = document.createElement("tr");
+
+  tr.innerHTML = `
+    <td>${item.desc}</td>
+    <td>R$ ${item.amount}</td>
+    <td class="columnType">${
+      item.type === "Entrada"
+        ? '<i class="bx bxs-chevron-up-circle"></i>'
+        : '<i class="bx bxs-chevron-down-circle"></i>'
+    }</td>
+    <td class="columnAction">
+      <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+    </td>
+  `;
+
+  tbody.appendChild(tr);
+}
+
+function loadItems() {
+  items = getItemsBD();
+  tbody.innerHTML = "";
+  items.forEach((item, index) => {
+    insertItem(item, index);
+  });
+
+  getTotals();
+}
+
+function getTotals() {
+  const amountIncomes = items
+    .filter((item) => item.type === "Entrada")
+    .map((transaction) => Number(transaction.amount));
+
+  const amountExpenses = items
+    .filter((item) => item.type === "Saída")
+    .map((transaction) => Number(transaction.amount));
+
+  const totalIncomes = amountIncomes
+    .reduce((acc, cur) => acc + cur, 0)
+    .toFixed(2);
+
+  const totalExpenses = Math.abs(
+    amountExpenses.reduce((acc, cur) => acc + cur, 0)
+  ).toFixed(2);
+
+  const totalItems = (totalIncomes - totalExpenses).toFixed(2);
+
+  incomes.innerHTML = totalIncomes;
+  expenses.innerHTML = totalExpenses;
+  total.innerHTML = totalItems;
+}
+
+const getItemsBD = () => JSON.parse(localStorage.getItem("db_items")) ?? [];
+const setItemsBD = () =>
+  localStorage.setItem("db_items", JSON.stringify(items));
+
+loadItems();

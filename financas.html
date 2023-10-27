@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="financas.css">
-    <script src="financas.js"></script>
-    <title>Controle de Estoque</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <div class="topo">
-            <ul>
-                <li>
-                    <a href="index.html">Estoque</a>
-                </li>
-            </ul>
-    
-            <ul>
-                <li>
-                    <a href="funcionarios.html">Funcionários</a>
-                </li>
-            </ul>
-    
-            <ul>
-                <li>
-                    <a href="financas.html">Finanças</a>
-                </li>
-            </ul>
-        </div>
-        
+  <header>
+    <div class="topo">
+        <ul>
+            <li>
+                <a href="index.html">Estoque</a>
+            </li>
+        </ul>
 
+        <ul>
+            <li>
+                <a href="funcionarios.html">Funcionários</a>
+            </li>
+        </ul>
 
-        <h2>Controle de despesas</h2>
+        <ul>
+            <li>
+                <a href="financas.html">Finanças</a>
+            </li>
+        </ul>
+    </div>
+    
+</header>
 
-        <div class="container">
-          <h4>Saldo atual</h4>
-          
-          <h1 id="balance" class="balance">R$ 0.00</h1>
-    
-          <div class="inc-exp-container">
-            <div>
-              <h4>Receitas</h4>
-              <p id="money-plus" class="money plus">+ R$0.00</p>
-            </div>
-    
-            <div>
-              <h4>Despesas</h4>
-              <p id="money-minus" class="money minus">- R$0.00</p>
-            </div>
-          </div>
-    
-          <h3>Transações</h3>
-          
-          <ul id="transactions" class="transactions"></ul>
-    
-          <h3>Adicionar transação</h3>
-          
-          <form id="form">
-            <div class="form-control">
-              <label for="text">Nome</label>
-              <input autofocus type="text" id="text" placeholder="Nome da transação" />
-            </div>
-    
-            <div class="form-control">
-              <label for="amount">Valor <br />
-                <small>(negativo - despesas, positivo - receitas)</small>
-              </label>
-              <input type="number" id="amount" placeholder="Valor da transação" />
-            </div>
-    
-            <button class="btn">Adicionar</button>
-          </form>
-        </div>
-    
-        
-    </header>
+  <main>
+    <div class="resume">
+      <div>
+        Entradas: R$ <span class="incomes">0.00</span>
+      </div>
+      <div>
+        Saídas: R$ <span class="expenses">0.00</span>
+      </div>
+      <div>
+        Total: R$ <span class="total">0.00</span>
+      </div>
+    </div>
+    <div class="newItem">
+      <div class="divDesc">
+        <label for="desc">Descrição</label>
+        <input type="text" id="desc" />
+      </div>
+      <div class="divAmount">
+        <label for="amount">Valor</label>
+        <input type="number" id="amount" />
+      </div>
+      <div class="divType">
+        <label for="type">Tipo</label>
+        <select id="type">
+          <option>Entrada</option>
+          <option>Saída</option>
+        </select>
+      </div>
+      <button id="btnNew">Incluir</button>
+    </div>
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th class="columnAmount">Valor</th>
+            <th class="columnType">Tipo</th>
+            <th class="columnAction"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>  
+
+  <script src="financas.js"></script>
+</body>
+</html>
